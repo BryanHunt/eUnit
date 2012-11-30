@@ -1,22 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: MongoEMF Developer JUnit Support
+Bundle-Name: JUnit Utilities
 Bundle-SymbolicName: org.eclipselabs.eunit.junit.utils
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.mongodb,
- org.eclipse.emf.common.util,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.resource,
- org.eclipse.emf.ecore.resource.impl,
- org.eclipselabs.emf.ext,
- org.eclipselabs.emf.mongodb,
- org.eclipselabs.emongo,
- org.hamcrest;version="1.3.0",
+Import-Package: org.hamcrest;version="1.3.0",
  org.junit,
  org.junit.rules,
  org.osgi.framework,
- org.osgi.service.cm;version="1.3.0",
+ org.osgi.service.cm,
  org.osgi.util.tracker
 Export-Package: org.eclipselabs.eunit.junit.utils
 Bundle-ActivationPolicy: lazy
