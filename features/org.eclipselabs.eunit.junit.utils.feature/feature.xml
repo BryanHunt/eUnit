@@ -17,6 +17,13 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import plugin="org.hamcrest.core"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="org.eclipse.osgi.services"/>
+   </requires>
+
    <plugin
          id="org.eclipselabs.eunit.junit.utils"
          download-size="0"
