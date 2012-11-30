@@ -62,9 +62,14 @@ public class ServiceLocator<T> extends ExternalResource
 	@Override
 	protected void before() throws Throwable
 	{
-		service = serviceTracker.waitForService(timeout);
+		service = waitForService();
 		assertThat("timed out waiting for service: " + service.getClass().getName(), service, is(notNullValue()));
 		super.before();
+	}
+
+	protected T waitForService() throws InterruptedException
+	{
+		return serviceTracker.waitForService(timeout);
 	}
 
 	private long timeout;
