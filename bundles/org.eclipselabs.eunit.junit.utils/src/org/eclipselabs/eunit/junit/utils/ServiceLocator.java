@@ -28,6 +28,11 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 public class ServiceLocator<T> extends ExternalResource
 {
+	private long timeout;
+	private Class<T> type;
+	private ServiceTracker<T, T> serviceTracker;
+	private T service;
+
 	/**
 	 * Defaults the timeout to 1000 ms.
 	 * 
@@ -46,6 +51,7 @@ public class ServiceLocator<T> extends ExternalResource
 	public ServiceLocator(Class<T> type, long timeout)
 	{
 		this.timeout = timeout;
+		this.type = type;
 		serviceTracker = new ServiceTracker<T, T>(Activator.getBundleContext(), type, null);
 		serviceTracker.open();
 	}
@@ -63,7 +69,7 @@ public class ServiceLocator<T> extends ExternalResource
 	protected void before() throws Throwable
 	{
 		service = waitForService();
-		assertThat("timed out waiting for service: " + service.getClass().getName(), service, is(notNullValue()));
+		assertThat("timed out waiting for service: " + type.getName(), service, is(notNullValue()));
 		super.before();
 	}
 
@@ -71,8 +77,4 @@ public class ServiceLocator<T> extends ExternalResource
 	{
 		return serviceTracker.waitForService(timeout);
 	}
-
-	private long timeout;
-	private ServiceTracker<T, T> serviceTracker;
-	private T service;
 }

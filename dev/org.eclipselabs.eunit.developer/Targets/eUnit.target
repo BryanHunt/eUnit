@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?>
-
-<target name="eUnit" sequenceNumber="3">
+<?pde version="3.8"?><target name="eUnit" sequenceNumber="5">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.pde.feature.group" version="3.8.1.v20120814-104528-7c7vFixFFt6Zr5aC6KM6LGWSd"/>
 <repository location="http://download.eclipse.org/releases/juno"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.hamcrest.core.feature.feature.group" version="1.3.0.201211292327"/>
-<unit id="org.hamcrest.library.feature.feature.group" version="1.3.0.201211292327"/>
+<unit id="org.hamcrest.feature.feature.group" version="1.3.0.201212101902"/>
+<unit id="org.junit.feature.feature.group" version="4.11.0.201212101902"/>
 <repository location="http://bryanhunt.github.com/3rd-party-libs/"/>
 </location>
 </locations>
