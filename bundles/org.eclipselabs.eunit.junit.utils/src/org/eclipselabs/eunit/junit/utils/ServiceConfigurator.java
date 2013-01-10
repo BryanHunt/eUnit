@@ -48,6 +48,7 @@ public class ServiceConfigurator<T> extends ServiceLocator<T>
 	protected void before() throws Throwable
 	{
 		configurationAdminServiceTracker = new ServiceTracker<ConfigurationAdmin, ConfigurationAdmin>(Activator.getBundleContext(), ConfigurationAdmin.class, null);
+		configurationAdminServiceTracker.open();
 		ConfigurationAdmin configurationAdmin = configurationAdminServiceTracker.waitForService(getTimeout());
 		assertThat("Timed out waiting for the ConfigurationAdmin service", configurationAdmin, is(notNullValue()));
 		Configuration configuration = configurationAdmin.getConfiguration(pid);
