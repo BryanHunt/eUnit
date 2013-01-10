@@ -52,8 +52,6 @@ public class ServiceLocator<T> extends ExternalResource
 	{
 		this.timeout = timeout;
 		this.type = type;
-		serviceTracker = new ServiceTracker<T, T>(Activator.getBundleContext(), type, null);
-		serviceTracker.open();
 	}
 
 	/**
@@ -68,13 +66,31 @@ public class ServiceLocator<T> extends ExternalResource
 	@Override
 	protected void before() throws Throwable
 	{
+		serviceTracker = new ServiceTracker<T, T>(Activator.getBundleContext(), type, null);
+		serviceTracker.open();
+
 		service = waitForService();
 		assertThat("timed out waiting for service: " + type.getName(), service, is(notNullValue()));
 		super.before();
 	}
 
+	@Override
+	protected void after()
+	{
+		serviceTracker.close();
+		super.after();
+	}
+
+	/**
+	 * @return the timeout to wait for the service
+	 */
+	protected long getTimeout()
+	{
+		return timeout;
+	}
+
 	protected T waitForService() throws InterruptedException
 	{
-		return serviceTracker.waitForService(timeout);
+		return serviceTracker.waitForService(getTimeout());
 	}
 }
