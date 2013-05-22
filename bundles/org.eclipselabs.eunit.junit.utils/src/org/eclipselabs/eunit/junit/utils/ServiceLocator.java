@@ -22,7 +22,19 @@ import org.osgi.util.tracker.ServiceTracker;
 /**
  * This class is intended to be used as a JUnit @Rule. It will create a
  * service tracker for the specified service and wait for the service
- * up to the specified timeout.
+ * up to the specified timeout. Usage example:
+ * <p>
+ * 
+ * <pre>
+ * &#064;Rule
+ * public ServiceLocator&lt;TestService&gt; serviceLocator = new ServiceLocator&lt;TestService&gt;(TestService.class);
+ * 
+ * &#064;Test
+ * public void myTest()
+ * {
+ * 	TestService service = serviceLocator.getService();
+ * }
+ * </pre>
  * 
  * @author bhunt
  */
@@ -89,6 +101,11 @@ public class ServiceLocator<T> extends ExternalResource
 		return timeout;
 	}
 
+	/**
+	 * 
+	 * @return the service or null if there was a timeout waiting for the service
+	 * @throws InterruptedException if the wait timer was interrupted
+	 */
 	protected T waitForService() throws InterruptedException
 	{
 		return serviceTracker.waitForService(getTimeout());
