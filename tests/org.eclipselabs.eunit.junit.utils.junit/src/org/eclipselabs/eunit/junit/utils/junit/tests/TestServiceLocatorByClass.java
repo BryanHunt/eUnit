@@ -24,7 +24,7 @@ import org.junit.Test;
  * @author bhunt
  * 
  */
-public class TestServiceLocator
+public class TestServiceLocatorByClass
 {
 	@Rule
 	public ServiceLocator<TestService> serviceLocator = new ServiceLocator<TestService>(TestService.class);

@@ -4,4 +4,5 @@
    <service>
       <provide interface="org.eclipselabs.eunit.junit.utils.junit.service.TestService"/>
    </service>
+   <property name="alias" type="String" value="junit"/>
 </scr:component>

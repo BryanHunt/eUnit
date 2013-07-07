@@ -40,6 +40,7 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 public class ServiceLocator<T> extends ExternalResource
 {
+	private String filter;
 	private long timeout;
 	private Class<T> type;
 	private ServiceTracker<T, T> serviceTracker;
@@ -55,6 +56,11 @@ public class ServiceLocator<T> extends ExternalResource
 		this(type, 1000);
 	}
 
+	public ServiceLocator(Class<T> type, String filter)
+	{
+		this(type, 1000, filter);
+	}
+
 	/**
 	 * 
 	 * @param type the service class
@@ -62,8 +68,19 @@ public class ServiceLocator<T> extends ExternalResource
 	 */
 	public ServiceLocator(Class<T> type, long timeout)
 	{
+		this(type, timeout, null);
+	}
+
+	/**
+	 * 
+	 * @param type the service class
+	 * @param timeout the timeout to wait for the service in ms.
+	 */
+	public ServiceLocator(Class<T> type, long timeout, String filter)
+	{
 		this.timeout = timeout;
 		this.type = type;
+		this.filter = filter;
 	}
 
 	/**
@@ -78,7 +95,11 @@ public class ServiceLocator<T> extends ExternalResource
 	@Override
 	protected void before() throws Throwable
 	{
-		serviceTracker = new ServiceTracker<T, T>(Activator.getBundleContext(), type, null);
+		if (filter != null)
+			serviceTracker = new ServiceTracker<T, T>(Activator.getBundleContext(), Activator.getBundleContext().createFilter(filter), null);
+		else
+			serviceTracker = new ServiceTracker<T, T>(Activator.getBundleContext(), type, null);
+
 		serviceTracker.open();
 
 		service = waitForService();
