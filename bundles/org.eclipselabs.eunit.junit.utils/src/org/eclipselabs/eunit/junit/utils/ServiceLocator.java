@@ -47,7 +47,7 @@ public class ServiceLocator<T> extends ExternalResource
 	private T service;
 
 	/**
-	 * Defaults the timeout to 1000 ms.
+	 * Defaults the timeout to 1000 ms, and the filter to null.
 	 * 
 	 * @param type the service class
 	 */
@@ -56,12 +56,20 @@ public class ServiceLocator<T> extends ExternalResource
 		this(type, 1000);
 	}
 
+	/**
+	 * Defaults the timeout to 100 ms.
+	 * 
+	 * @param type the service class
+	 * @param filter the service filter @see org.osgi.util.tracker.ServiceTracker for filter
+	 *          specification
+	 */
 	public ServiceLocator(Class<T> type, String filter)
 	{
 		this(type, 1000, filter);
 	}
 
 	/**
+	 * Defaults the filter to null.
 	 * 
 	 * @param type the service class
 	 * @param timeout the timeout to wait for the service in ms.
@@ -75,6 +83,8 @@ public class ServiceLocator<T> extends ExternalResource
 	 * 
 	 * @param type the service class
 	 * @param timeout the timeout to wait for the service in ms.
+	 * @param filter the service filter @see org.osgi.util.tracker.ServiceTracker for filter
+	 *          specification
 	 */
 	public ServiceLocator(Class<T> type, long timeout, String filter)
 	{
