@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/org.eclipselabs.eunit.junit.utils.feature_1.0.0.qualifier.jar" id="org.eclipselabs.eunit.junit.utils.feature" version="1.0.0.qualifier">
-      <category name="eunit"/>
-   </feature>
-   <category-def name="eunit" label="eUnit"/>
-</site>

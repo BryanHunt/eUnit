@@ -57,7 +57,18 @@ public class ServiceConfigurator<T> extends ServiceLocator<T>
 	 */
 	public ServiceConfigurator(Class<T> type, String pid, Dictionary<String, ?> properties)
 	{
-		this(type, 1000, pid, properties);
+		this(type, 1000, null, pid, properties);
+	}
+
+	/**
+	 * 
+	 * @param type the service class
+	 * @param pid the OSGi service id
+	 * @param properties the service configuration properties
+	 */
+	public ServiceConfigurator(Class<T> type, String filter, String pid, Dictionary<String, ?> properties)
+	{
+		this(type, 1000, filter, pid, properties);
 	}
 
 	/**
@@ -67,9 +78,9 @@ public class ServiceConfigurator<T> extends ServiceLocator<T>
 	 * @param pid the OSGi service id
 	 * @param properties the service configuration properties
 	 */
-	public ServiceConfigurator(Class<T> type, long timeout, String pid, Dictionary<String, ?> properties)
+	public ServiceConfigurator(Class<T> type, long timeout, String filter, String pid, Dictionary<String, ?> properties)
 	{
-		super(type, timeout);
+		super(type, timeout, filter);
 		this.pid = pid;
 		this.properties = properties;
 	}
@@ -83,7 +94,7 @@ public class ServiceConfigurator<T> extends ServiceLocator<T>
 
 		assertThat("timed out waiting for the ConfigurationAdmin service", configurationAdmin, is(notNullValue()));
 
-		Configuration configuration = configurationAdmin.createFactoryConfiguration(pid);
+		Configuration configuration = configurationAdmin.createFactoryConfiguration(pid, null);
 		configuration.update(properties);
 		super.before();
 	}
