@@ -63,6 +63,7 @@ public class ServiceConfigurator<T> extends ServiceLocator<T>
 	/**
 	 * 
 	 * @param type the service class
+	 * @param filter the service filter @see org.osgi.util.tracker.ServiceTracker for filter specification
 	 * @param pid the OSGi service id
 	 * @param properties the service configuration properties
 	 */
@@ -75,6 +76,7 @@ public class ServiceConfigurator<T> extends ServiceLocator<T>
 	 * 
 	 * @param type the service class
 	 * @param timeout the timeout to wait for the service in ms.
+	 * @param filter the service filter @see org.osgi.util.tracker.ServiceTracker for filter specification
 	 * @param pid the OSGi service id
 	 * @param properties the service configuration properties
 	 */
