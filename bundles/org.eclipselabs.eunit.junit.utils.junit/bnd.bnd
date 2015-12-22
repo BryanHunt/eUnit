@@ -5,4 +5,5 @@ Private-Package: \
 -buildpath: \
 	org.hamcrest;version=1.3,\
 	junit;version=4.11,\
-	org.eclipselabs.eunit.junit.utils;version=latest
+	org.eclipselabs.eunit.junit.utils;version=latest,\
+	osgi.cmpn;version=6.0

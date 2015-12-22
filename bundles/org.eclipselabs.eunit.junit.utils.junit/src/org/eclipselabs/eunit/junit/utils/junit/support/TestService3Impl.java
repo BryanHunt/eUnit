@@ -13,12 +13,18 @@ package org.eclipselabs.eunit.junit.utils.junit.support;
 
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
+
 /**
  * @author bhunt
  * 
  */
-public class TestServiceImpl implements ConfiguredTestService
+@Component(service = TestService.class, property = {"instance=3"}, configurationPolicy = ConfigurationPolicy.REQUIRE)
+public class TestService3Impl implements TestService
 {
+	public static String PID = "org.eclipselabs.eunit.junit.utils.junit.test.configuredService";
 	private Map<String, Object> properties;
 
 	@Override
@@ -27,6 +33,7 @@ public class TestServiceImpl implements ConfiguredTestService
 		return properties;
 	}
 
+	@Activate
 	public void activate(Map<String, Object> properties)
 	{
 		this.properties = properties;

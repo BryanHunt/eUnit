@@ -11,12 +11,29 @@
 
 package org.eclipselabs.eunit.junit.utils.junit.support;
 
+import java.util.Map;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+
 /**
- * This interface is needed so that we can declare the service
- * and have the configuration be required.
- * 
  * @author bhunt
  * 
  */
-public interface ConfiguredTestService extends TestService
-{}
+@Component(service = TestService.class, property = {"alias=junit", "instance=2"})
+public class TestService2Impl implements TestService
+{
+	private Map<String, Object> properties;
+
+	@Override
+	public Map<String, Object> getProperties()
+	{
+		return properties;
+	}
+
+	@Activate
+	public void activate(Map<String, Object> properties)
+	{
+		this.properties = properties;
+	}
+}

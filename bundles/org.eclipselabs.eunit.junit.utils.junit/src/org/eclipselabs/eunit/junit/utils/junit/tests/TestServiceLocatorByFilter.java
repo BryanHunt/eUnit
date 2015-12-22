@@ -34,5 +34,6 @@ public class TestServiceLocatorByFilter
 	{
 		TestService service = serviceLocator.getService();
 		assertThat(service.getProperties(), is(notNullValue()));
+		assertThat(service.getProperties().get("instance"), is(2));
 	}
 }

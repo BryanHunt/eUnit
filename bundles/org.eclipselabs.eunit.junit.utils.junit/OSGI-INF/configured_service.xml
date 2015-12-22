@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" configuration-policy="require" immediate="true" name="org.eclipselabs.eunit.junit.utils.junit.test.configuredService">
-   <implementation class="org.eclipselabs.eunit.junit.utils.junit.service.TestServiceImpl"/>
-   <service>
-      <provide interface="org.eclipselabs.eunit.junit.utils.junit.service.ConfiguredTestService"/>
-   </service>
-</scr:component>

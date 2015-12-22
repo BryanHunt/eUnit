@@ -15,10 +15,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.Dictionary;
 import java.util.Hashtable;
 
 import org.eclipselabs.eunit.junit.utils.ServiceConfigurator;
-import org.eclipselabs.eunit.junit.utils.junit.support.ConfiguredTestService;
+import org.eclipselabs.eunit.junit.utils.junit.support.TestService;
+import org.eclipselabs.eunit.junit.utils.junit.support.TestService3Impl;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -28,7 +30,7 @@ import org.junit.Test;
  */
 public class TestServiceConfigurator
 {
-	private static Hashtable<String, String> properties = new Hashtable<String, String>();
+	private static Dictionary<String, Object> properties = new Hashtable<>();
 
 	static
 	{
@@ -36,14 +38,14 @@ public class TestServiceConfigurator
 	}
 
 	@Rule
-	public ServiceConfigurator<ConfiguredTestService> serviceLocator = new ServiceConfigurator<ConfiguredTestService>(ConfiguredTestService.class,
-			"org.eclipselabs.eunit.junit.utils.junit.test.configuredService", properties);
+	public ServiceConfigurator<TestService> serviceLocator = new ServiceConfigurator<TestService>(TestService.class, TestService3Impl.PID, properties);
 
 	@Test
 	public void testGetService()
 	{
-		ConfiguredTestService service = serviceLocator.getService();
+		TestService service = serviceLocator.getService();
 		assertThat(service.getProperties(), is(notNullValue()));
+		assertThat(service.getProperties().get("instance"), is(3));
 		assertThat((String) service.getProperties().get("junit"), is("junit"));
 	}
 }
