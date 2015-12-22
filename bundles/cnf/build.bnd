@@ -47,7 +47,7 @@ javac.target:          1.8
 ## example, to add one additional plugin to the list defined in
 ## ext/repositories.bnd:
 -plugin: ${ext.repositories.-plugin}, \
-aQute.bnd.deployer.repository.FixedIndexedRepo;name=3p2;locations=http://bryanhunt.github.com/3rd-party-libs/index.xml.gz
+aQute.bnd.deployer.repository.FixedIndexedRepo;name=3p2;locations=http://bryanhunt.github.com/3rd-party-libs/bundles/index.xml.gz
 
 ## To enable baselining, uncomment the following lines:
 # -baseline: *
